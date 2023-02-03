@@ -153,6 +153,9 @@ extension FileManager {
 
     func createParentDirectoryStructure(for url: URL) throws {
         let parentDirectoryURL = url.deletingLastPathComponent()
+        guard !self.fileExists(atPath: parentDirectoryURL.path) else {
+            return
+        }
         try self.createDirectory(at: parentDirectoryURL, withIntermediateDirectories: true, attributes: nil)
     }
 
