@@ -155,7 +155,7 @@ extension FileManager {
         let parentDirectoryURL = url.deletingLastPathComponent()
         let exists = self.fileExists(atPath: parentDirectoryURL.path)
         let isDirectory = (try? parentDirectoryURL.resourceValues(forKeys: [.isDirectoryKey]))?.isDirectory ?? false
-        if exists && isDirectory {
+        if exists && !isDirectory {
             try self.removeItem(atPath: parentDirectoryURL.path)
         }
         try self.createDirectory(at: parentDirectoryURL, withIntermediateDirectories: true, attributes: nil)
